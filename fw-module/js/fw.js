@@ -87,9 +87,7 @@ define(function(){
                 return key === undefined || hasOwn.call( obj, key );
             },
             'type':function(obj){
-                return obj == null ?
-                    String( obj ) :
-                [ toString.call(obj) ] || "object";
+                return obj == null ? String( obj ) : [ toString.call(obj) ] || "object";
             },
             'isWindow':function(obj){
                 return obj && typeof obj === "object" && "setInterval" in obj;
