@@ -1,0 +1,51 @@
+#paging #paging-info, #paging #paging-jump, #paging #paging-size, #paging #paging-page {
+  float: left;
+  margin-left: 5px;
+  margin-right: 5px;
+  line-height: 25px;
+  height: 25px; }
+
+#paging .none {
+  display: none; }
+
+#paging-page {
+  margin: -2px 10px 0 10px !important;
+  padding-left: 0; }
+  #paging-page li {
+    list-style-type: none;
+    float: left;
+    margin-top: 4px;
+    margin-right: 5px; }
+    #paging-page li a {
+      padding: 2px 5px 0;
+      font-size: 14px;
+      font-family: Microsoft Yahei;
+      cursor: pointer; }
+    #paging-page li a:nth-child(1).active {
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px; }
+    #paging-page li a.active {
+      background: #3879D9;
+      color: white; }
+  #paging-page .paging-next, #paging-page .paging-prev, #paging-page .paging-first, #paging-page .paging-last {
+    cursor: pointer; }
+
+#paging-info {
+  font-family: Times New Roman;
+  margin-top: 3px; }
+
+#paging-jump {
+  color: black; }
+  #paging-jump input {
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    width: 30px;
+    height: 18px;
+    padding: 0;
+    text-align: center;
+    box-sizing: content-box; }
+  #paging-jump button {
+    margin-left: -2px;
+    padding: 0 2px;
+    line-height: 18px;
+    outline: none; }

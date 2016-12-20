@@ -1,0 +1,68 @@
+//这个是最外层
+#paging{
+  #paging-info,#paging-jump,#paging-size,#paging-page{
+    float:left;
+    margin-left:5px;
+    margin-right:5px;
+    line-height:25px;
+    height:25px;
+  }
+  .none{
+    display:none;
+  }
+}
+
+//这个是page的样式 1 2 3 >>
+#paging-page{
+  margin:-2px 10px 0 10px !important;
+  padding-left:0;
+  li{
+    list-style-type: none;
+    float:left;
+    margin-top:4px;
+    margin-right:5px;
+    a{
+      padding:2px 5px 0;
+      font-size:14px;
+      font-family: Microsoft Yahei;
+      cursor: pointer;
+    }
+    a:nth-child(1).active{
+      border-top-left-radius: 4px;
+      border-bottom-left-radius: 4px;
+    }
+    a.active{
+      background:#3879D9;
+      color:white;
+    }
+  }
+  .paging-next,.paging-prev,.paging-first,.paging-last{
+    cursor: pointer;
+  }
+}
+
+//这个是信息的样式 1~20 共20条
+#paging-info{
+  font-family: Times New Roman;
+  margin-top:3px;
+}
+
+//这个是跳转的样式 jump
+#paging-jump{
+  color:black;
+  input{
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    width: 30px;
+    height: 18px;
+    padding: 0;
+    text-align: center;
+    box-sizing: content-box;
+  }
+  button{
+    margin-left: -2px;
+    padding: 0 2px;
+    line-height: 18px;
+    outline: none;
+  }
+}
