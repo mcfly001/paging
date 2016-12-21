@@ -49,3 +49,6 @@
     padding: 0 2px;
     line-height: 18px;
     outline: none; }
+
+#paging-size {
+  margin-top: 1px; }
