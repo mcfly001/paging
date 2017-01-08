@@ -353,7 +353,7 @@
                     this.ajax(options);
                     $('#paging-page').html('');
                     this.initPage(options);
-                    this.renderInfo(options,0);
+                    this.renderInfo(options,1);
                 },
                 //按钮的点击事件（在不发生按钮数目变化的情况下）
                 'defaultClick':function(index){
