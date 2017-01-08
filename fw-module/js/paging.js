@@ -195,7 +195,9 @@ define(['fw'],function(fw){
                 startIndex,
                 _self=this,
                 lilength,
-                activeIndex;
+                activeIndex,
+                length,//li的个数
+                location;//插入的地方
             //删除里面的li标签（除了首尾页以及上下页的li）
             if($page.getElementsByClassName('number').length){
                 lilength=$page.getElementsByClassName('number').length;
@@ -203,122 +205,97 @@ define(['fw'],function(fw){
                     $page.removeChild($page.getElementsByClassName('number')[0])
                 }
             }
-            //判断是否显示首尾页
-            if(showFirstLastBtn){
-                $first=document.getElementsByClassName('paging-first')[0].className;
-                $last=document.getElementsByClassName('paging-last')[0].className;
-                //显示首页和上一页以及7个按钮
-                if(type==1){
-                    for(var i=0;i<pageBtnCount-2;i++){
-                        $page.insertBefore(document.createElement('li'),$page.childNodes[2]);
+            //展现上一页和首页（有的话）
+            if(type==1){
+                if(showFirstLastBtn){
+                    length=pageBtnCount-2;
+                    location=2;
+                }
+                else{
+                    length=pageBtnCount-1;
+                    location=1;
+                }
+                for(var i=0;i<length;i++){
+                    $page.insertBefore(document.createElement('li'),$page.childNodes[location]);
+                }
+                for(var i=0;i<length;i++){
+                    $page.getElementsByTagName('li')[location+i].className='number';
+                    $page.getElementsByTagName('li')[location+i].innerHTML='<a data-index='+(countIndex-pageBtnCount+i+location+1)+'>'+(countIndex-pageBtnCount+i+location+1)+'</a>';
+                    //如果当前a里面的值和number相等，那么这个就高亮显示
+                    if(countIndex-pageBtnCount+i+location+1==number){
+                        activeIndex=i;
                     }
-                    for(var i=0;i<pageBtnCount-2;i++){
-                        $page.getElementsByTagName('li')[2+i].className='number';
-                        $page.getElementsByTagName('li')[2+i].innerHTML='<a data-index='+(countIndex-pageBtnCount+i+3)+'>'+(countIndex-pageBtnCount+i+3)+'</a>';
-                        //如果当前a里面的值和number相等，那么这个就高亮显示
-                        if(countIndex-pageBtnCount+i+3==number){
-                            activeIndex=i;
-                        }
-                    }
-                    document.getElementsByClassName('paging-prev')[0].className=$prev.replace('none','');
-                    document.getElementsByClassName('paging-next')[0].className='paging-next none';
+                }
+                if(showFirstLastBtn){
+                    $first=document.getElementsByClassName('paging-first')[0].className;
                     document.getElementsByClassName('paging-first')[0].className=$first.replace('none','');
                     document.getElementsByClassName('paging-last')[0].className='paging-last none';
-                    $page.getElementsByTagName('a')[activeIndex].className='active';
                 }
-                //显示首尾页以及5个按钮
-                else if(type==2){
-                    //这里统一第一个a的html的值都是从startIndex开始
-                    if(where=='fsecond'){
-                        startIndex=number-1;
-                        activeIndex=1;
-                    }
-                    else{
-                        startIndex=number-pageBtnCount+6;
-                        activeIndex=pageBtnCount-6;
-                    }
-                    for(var i=0;i<pageBtnCount-4;i++){
-                        $page.insertBefore(document.createElement('li'),$page.childNodes[2]);
-                    }
-                    for(var i=0;i<pageBtnCount-4;i++){
-                        $page.getElementsByTagName('li')[2+i].className='number';
-                        $page.getElementsByTagName('li')[2+i].innerHTML='<a data-index='+(startIndex+i)+'>'+(startIndex+i)+'</a>';
-                    }
-                    document.getElementsByClassName('paging-prev')[0].className=$prev.replace('none','');
-                    document.getElementsByClassName('paging-next')[0].className=$next.replace('none','');
+                document.getElementsByClassName('paging-prev')[0].className=$prev.replace('none','');
+                document.getElementsByClassName('paging-next')[0].className='paging-next none';
+                $page.getElementsByTagName('a')[activeIndex].className='active';
+            }
+            //展现上一页和下一页以及首尾页（有的话）
+            else if(type==2){
+                if(showFirstLastBtn){
+                    length=pageBtnCount-6;
+                    location=2;
+                }
+                else{
+                    length=pageBtnCount-4;
+                    location=1;
+                }
+                //这里统一第一个a的html的值都是从startIndex开始
+                if(where=='fsecond'){
+                    startIndex=number-1;
+                    activeIndex=1;
+                }
+                else{
+                    startIndex=number-length;
+                    activeIndex=length;
+                }
+                for(var i=0;i<length+2;i++){
+                    $page.insertBefore(document.createElement('li'),$page.childNodes[location]);
+                }
+                for(var i=0;i<length+2;i++){
+                    $page.getElementsByTagName('li')[location+i].className='number';
+                    $page.getElementsByTagName('li')[location+i].innerHTML='<a data-index='+(startIndex+i)+'>'+(startIndex+i)+'</a>';
+                }
+                if(showFirstLastBtn){
+                    $first=document.getElementsByClassName('paging-first')[0].className;
+                    $last=document.getElementsByClassName('paging-last')[0].className;
                     document.getElementsByClassName('paging-first')[0].className=$first.replace('none','');
                     document.getElementsByClassName('paging-last')[0].className=$last.replace('none','');
-                    $page.getElementsByTagName('a')[activeIndex].className='active';
                 }
-                //显示尾页和下一页以及7个按钮
-                else if(type==3){
-                    for(var i=0;i<pageBtnCount-2;i++){
-                        $page.insertBefore(document.createElement('li'),$page.childNodes[2]);
-                    }
-                    for(var i=0;i<pageBtnCount-2;i++){
-                        $page.getElementsByTagName('li')[2+i].className='number';
-                        $page.getElementsByTagName('li')[2+i].innerHTML='<a data-index='+(i+1)+'>'+(i+1)+'</a>';
-                    }
-                    document.getElementsByClassName('paging-prev')[0].className='paging-prev none';
-                    document.getElementsByClassName('paging-next')[0].className=$next.replace('none','');
+                document.getElementsByClassName('paging-prev')[0].className=$prev.replace('none','');
+                document.getElementsByClassName('paging-next')[0].className=$next.replace('none','');
+                $page.getElementsByTagName('a')[activeIndex].className='active';
+            }
+            //展现下一页以及尾页（有的话）
+            else{
+                if(showFirstLastBtn){
+                    length=pageBtnCount-2;
+                    location=2;
+                }
+                else{
+                    length=pageBtnCount-1;
+                    location=1;
+                }
+                for(var i=0;i<length;i++){
+                    $page.insertBefore(document.createElement('li'),$page.childNodes[location]);
+                }
+                for(var i=0;i<length;i++){
+                    $page.getElementsByTagName('li')[location+i].className='number';
+                    $page.getElementsByTagName('li')[location+i].innerHTML='<a data-index='+(i+1)+'>'+(i+1)+'</a>';
+                }
+                if(showFirstLastBtn){
+                    $last=document.getElementsByClassName('paging-last')[0].className;
                     document.getElementsByClassName('paging-first')[0].className='paging-first none';
                     document.getElementsByClassName('paging-last')[0].className=$last.replace('none','');
-                    $page.getElementsByTagName('a')[number-1].className='active';
                 }
-            }
-            else{
-                //显示上一页以及7个按钮
-                if(type==1){
-                    for(var i=0;i<pageBtnCount-1;i++){
-                        $page.insertBefore(document.createElement('li'),$page.childNodes[1]);
-                    }
-                    for(var i=0;i<pageBtnCount-1;i++){
-                        $page.getElementsByTagName('li')[1+i].className='number';
-                        $page.getElementsByTagName('li')[1+i].innerHTML='<a data-index='+(countIndex-pageBtnCount+i+2)+'>'+(countIndex-pageBtnCount+i+2)+'</a>';
-                        //如果当前a里面的值和number相等，那么这个就高亮显示
-                        if(countIndex-pageBtnCount+i+2==number){
-                            activeIndex=i;
-                        }
-                    }
-                    document.getElementsByClassName('paging-prev')[0].className=$prev.replace('none','');
-                    document.getElementsByClassName('paging-next')[0].className='paging-next none';
-                    $page.getElementsByTagName('a')[activeIndex].className='active';
-                }
-                //显示首尾页以及5个按钮
-                else if(type==2){
-                    //这里统一第一个a的html的值都是从startIndex开始
-                    if(where=='fsecond'){
-                        startIndex=number-1;
-                        activeIndex=1;
-                    }
-                    else{
-                        startIndex=number-pageBtnCount+4;
-                        activeIndex=pageBtnCount-4;
-                    }
-                    for(var i=0;i<pageBtnCount-2;i++){
-                        $page.insertBefore(document.createElement('li'),$page.childNodes[1]);
-                    }
-                    for(var i=0;i<pageBtnCount-2;i++){
-                        $page.getElementsByTagName('li')[1+i].className='number';
-                        $page.getElementsByTagName('li')[1+i].innerHTML='<a data-index='+(startIndex+i)+'>'+(startIndex+i)+'</a>';
-                    }
-                    document.getElementsByClassName('paging-prev')[0].className=$prev.replace('none','');
-                    document.getElementsByClassName('paging-next')[0].className=$next.replace('none','');
-                    $page.getElementsByTagName('a')[activeIndex].className='active';
-                }
-                //显示尾页和下一页以及7个按钮
-                else if(type==3){
-                    for(var i=0;i<pageBtnCount-1;i++){
-                        $page.insertBefore(document.createElement('li'),$page.childNodes[1]);
-                    }
-                    for(var i=0;i<pageBtnCount-1;i++){
-                        $page.getElementsByTagName('li')[1+i].className='number';
-                        $page.getElementsByTagName('li')[1+i].innerHTML='<a data-index='+(i+1)+'>'+(i+1)+'</a>';
-                    }
-                    document.getElementsByClassName('paging-prev')[0].className='paging-prev none';
-                    document.getElementsByClassName('paging-next')[0].className=$next.replace('none','');
-                    $page.getElementsByTagName('a')[number-1].className='active';
-                }
+                document.getElementsByClassName('paging-prev')[0].className='paging-prev none';
+                document.getElementsByClassName('paging-next')[0].className=$next.replace('none','');
+                $page.getElementsByTagName('a')[number-1].className='active';
             }
             //给按钮添加事件
             for(var i=0;i<$page.getElementsByTagName('a').length;i++){
@@ -375,7 +352,7 @@ define(['fw'],function(fw){
                 if((options.showFirstLastBtn && index<=options.pageBtnCount-3) || (!options.showFirstLastBtn && index<=options.pageBtnCount-2)){
                     this.renderPage(options,index,3);
                 }
-                else if((options.showFirstLastBtn && index==countIndex-options.pageBtnCount+3) || (!options.showFirstLastBtn && index>=countIndex-options.pageBtnCount+2)){
+                else if((options.showFirstLastBtn && index>=countIndex-options.pageBtnCount+3) || (!options.showFirstLastBtn && index>=countIndex-options.pageBtnCount+2)){
                     this.renderPage(options,index,2,'lsecond');
                 }
                 else{

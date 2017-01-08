@@ -10,7 +10,40 @@
     <div id="paging">
 
     </div>
-<script type="text/javascript" src="require.js"></script>
-<script type="text/javascript" src="build/paging.js"></script>
+    <div id="kk"></div>
+<script type="text/javascript" src="fw-module/js/jquery-1.10.2.min.js"></script>
+<script type="text/javascript" src="fw-module/js/jq-paging.js"></script>
+<script type="text/javascript">
+    $('#paging').paging({
+        nextBtnText:'下一页',
+        prevBtnText: "上一页",
+        firstBtnText:'首页',
+        lastBtnText:'末页',
+        pageSize:20,
+        pageBtnCount: 11,
+        remote: {
+            url: './fw-module/json/wechat.js',//ajax请求地址
+            type:'GET',
+            pageParams:function(data){//请求参数,这里的data就是options
+                return{
+                    'index':data.pageIndex,
+                    'size':data.pageSize
+                }
+            },
+            success: function(data,options){//请求成功
+                var data=JSON.parse(data),
+                        $ul=document.getElementsByTagName('ul')[0],
+                        length=options.pageSize,
+                        out='';
+                for(var i=0;i<length;i++){
+                    out+='<li style="list-style-type:none;">'+data.dt[i].title+'</li>';
+                }
+                $ul.innerHTML=out;
+            },
+            fail: null,//请求失败
+            totalName: 'aID'//返回的数量总计
+        }
+    });
+</script>
 </body>
 </html>
