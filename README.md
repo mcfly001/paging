@@ -1,9 +1,9 @@
 ﻿paging
 这是一个关于分页的插件
 
-#首先说明一下各个结构。
+#首先说明一下各个结构，该分页插件分为2块
 
->>该分页插件分为2块，一个是需要引入jq的，案例是demo1，引用的文件是fw-module/js下面的jquery-1.10.2.min.js和jq-paging.js2个文文件。
+>>第一个是需要引入jq的，案例是demo1，引用的文件是fw-module/js下面的jquery-1.10.2.min.js和jq-paging.js2个文文件。
 
 >>第二是是用原生写的，用模块的形式，案例是demo2， 引用的文件是fw-module/js里面的fw.js（主要写的是jq的选择器以及extend方法）paging.js（分页插件的
 主要逻辑）以及 main.js（模块的主入口文件），最后把这3个文件打包成build下面的paging文件。
