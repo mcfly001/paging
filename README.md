@@ -7,11 +7,8 @@
 
 >>第二是是用原生写的，用模块的形式，案例是demo2， 引用的文件是fw-module/js里面的fw.js（主要写的是jq的选择器以及extend方法）paging.js（分页插件的
 
-主要逻辑）以及 main.js（模块的主入口文件），最后把这3个文件打包成build下面的paging文件
-  
->>build的文件夹里面的是把fw-module里面的3个js模块文件通过require打包压缩后的总和。
-  
->>demo.html是用require打包后的案例，demo2是未打包的时候的案例
+主要逻辑）以及 main.js（模块的主入口文件），最后把这3个文件打包成build下面的paging文件。
+ 
 
 #接下来插件的使用方式
  
