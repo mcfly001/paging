@@ -74,7 +74,7 @@
                         })
                     }
                     else{
-                        $('#paging').html(options.noInfoText);
+                        self.html(options.noInfoText);
                     }
                 });
             };
