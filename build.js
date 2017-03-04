@@ -11,4 +11,3 @@
     name: "main",//这个是主入口
     out: "build/paging.js"
 })
-//这个是测试github的
