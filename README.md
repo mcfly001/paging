@@ -89,15 +89,15 @@ noInfoText: '目前没有数据'
 
 showJump: true
 
-####跳转页的文字
+#### 跳转页的文字
 
 jumpBtnText: '跳转'
 
-####是否显示每页的数量
+#### 是否显示每页的数量
 
 showPageSizes: true
 
-####配置每页的可选数量 
+#### 配置每页的可选数量 
 
 pageSizeItems: [5, 10, 15, 20]
 
