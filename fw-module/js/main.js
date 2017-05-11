@@ -16,7 +16,7 @@ require(['fw','paging'],function(fw,paging){
         pageIndex:1,
         pageElementSort: ['page','jump', 'info','size'],
         remote: {
-            url: './fw-module/json/wechat.js',//ajax请求地址
+            url: 'http://www.yongjian.space/json/wechat.json',//ajax请求地址
             type:'GET',
             pageParams:function(data){//请求参数,这里的data就是options
                 return{
@@ -44,6 +44,6 @@ require(['fw','paging'],function(fw,paging){
         firstBtnText:'首页',
         lastBtnText:'末页',
         pageBtnCount: 11,
-        showFirstLastBtn: false
+        showFirstLastBtn: true
     });
 });

@@ -21,8 +21,9 @@
         lastBtnText:'末页',
         pageSize:20,
         pageBtnCount: 11,
+        showFirstLastBtn:true,
         remote: {
-            url: './fw-module/json/wechat.js',//ajax请求地址
+            url: 'http://www.yongjian.space/json/wechat.json',//ajax请求地址
             type:'GET',
             pageParams:function(data){//请求参数,这里的data就是options
                 return{
@@ -32,9 +33,9 @@
             },
             success: function(data,options){//请求成功
                 var data=JSON.parse(data),
-                        $ul=document.getElementsByTagName('ul')[0],
-                        length=options.pageSize,
-                        out='';
+                    $ul=document.getElementsByTagName('ul')[0],
+                    length=options.pageSize,
+                    out='';
                 for(var i=0;i<length;i++){
                     out+='<li style="list-style-type:none;">'+data.dt[i].title+'</li>';
                 }

@@ -24694,7 +24694,7 @@ function (lang,   logger,   envOptimize,        file,           parse,
      */
     function cleanCssUrlQuotes(url) {
         //Make sure we are not ending in whitespace.
-        //Not very confident of the css regexps above that there will not be ending
+        //Not very confident of the cssdemo regexps above that there will not be ending
         //whitespace.
         url = url.replace(/\s+$/, "");
 
@@ -24825,7 +24825,7 @@ function (lang,   logger,   envOptimize,        file,           parse,
                 importList.push(fullImportFileName);
                 return importContents;
             } catch (e) {
-                logger.warn(fileName + "\n  Cannot inline css import, skipping: " + importFileName);
+                logger.warn(fileName + "\n  Cannot inline cssdemo import, skipping: " + importFileName);
                 return fullMatch;
             }
         });

@@ -39,6 +39,7 @@ define(['fw'],function(fw){
 
     //给选择对象添加paging的这个方法
     fw.fn.extend({
+        //这个是对请求参数进行添加，这里有一个Math.random()是为了版本控制。
         'formatParams':function(data){
             var arr = [];
             for (var name in data) {
@@ -47,6 +48,7 @@ define(['fw'],function(fw){
             arr.push(("v=" + Math.random()).replace(".",""));
             return arr.join("&");
         },
+        //这是ajax请求，可以根据不同需求加入不同需求
         'ajax':function(remote,customoptions,callback){
             options = remote || {};
             options.type = (options.type || "GET").toUpperCase();

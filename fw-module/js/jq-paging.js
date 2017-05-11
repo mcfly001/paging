@@ -523,14 +523,3 @@
         }
     })
 })(jQuery);
-
-/*
-有首尾
-    0<x<pageBtnCount-2                            type=3
-    pageBtnCount-2<=x<=countIndex-pageBtnCount+4  type=2
-    countIndex-pageBtnCount+4<=x<countIndex       type=1
-无首尾
-    0<x<pageBtnCount-1                            type=3
-    pageBtnCount-1<=x<=countIndex-pageBtnCount+3  type=2
-    countIndex-pageBtnCount+3<=x<countIndex       type=1
-*/
